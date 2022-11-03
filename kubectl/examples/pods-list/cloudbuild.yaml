@@ -4,6 +4,21 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=test-gke-cluster'
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['get', 'secrets']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=test-gke-cluster'
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['describe', 'secrets/db-user-pass']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=test-gke-cluster'
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['delete', 'secret', 'db-user-pass']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=test-gke-cluster'
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args: ['get', 'pods']
   env:
